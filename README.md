@@ -1,17 +1,17 @@
-# Advanced EEG-Based Classification of Alzheimer's Disease and Frontotemporal Dementia
+# Classificação avançada da doença de Alzheimer e da demência frontotemporal baseada em EEG
 
-## Project Overview
+## Visão geral do projeto
 
-This project extends the foundational work of Miltiadous et al. (2023) by developing advanced machine learning classifiers for distinguishing between Alzheimer's Disease (AD), Frontotemporal Dementia (FTD), and healthy controls using EEG data. The study implements comprehensive feature engineering, class imbalance handling, and rigorous validation techniques that reveal both the potential and fundamental limitations of current EEG-based approaches.
+Este projeto amplia o trabalho fundamental de Miltiadous et al. (2023) ao desenvolver classificadores avançados de aprendizado de máquina para distinguir entre Doença de Alzheimer (DA), Demência Frontotemporal (DFT) e controles saudáveis ​​usando dados de EEG. O estudo implementa técnicas abrangentes de engenharia de recursos, tratamento de desequilíbrio de classes e validação rigorosa que revelam tanto o potencial quanto as limitações fundamentais das abordagens atuais baseadas em EEG.
 
 ## Dataset
 
-**Source**: Miltiadous et al. (2023) EEG dataset from OpenNeuro (ds004504)
-- **Participants**: 88 subjects (36 AD, 23 FTD, 29 controls)
-- **Recording**: 19-channel resting-state EEG, eyes-closed condition
-- **Format**: BIDS-compliant preprocessed data
+**Fonte**: Miltiadous et al. (2023) EEG dataset from OpenNeuro (ds004504)
+- **Participantes**: 88 subjects (36 AD, 23 FTD, 29 controls)
+- **Registro**: 19-channel resting-state EEG, eyes-closed condition
+- **Formato**: BIDS-compliant preprocessed data
 
-### Downloading the Dataset
+### Baixando o Dataset
 
 ```bash
 # Install OpenNeuro CLI
@@ -24,82 +24,81 @@ openneuro login
 openneuro download --snapshot 1.0.7 ds004504 ds004504-download/
 ```
 
-## Key Contributions
+## Principais Contribuições
 
-- **Advanced Feature Engineering**: Extended beyond basic spectral features to include connectivity measures and hemispheric asymmetry
-- **Systematic Resampling Evaluation**: Tested 7 different techniques for handling class imbalance
-- **Rigorous Validation**: Conservative cross-validation with stratified k-fold approach
-- **MLflow Integration**: Comprehensive experiment tracking for reproducibility
-- **Limitation Documentation**: Quantified fundamental challenges in multi-class dementia classification
-- **Binary Classification Approach**: Developed clinically-oriented disease vs. healthy screening model
+- **Engenharia de Recursos Avançada**: Ampliação das características espectrais básicas para incluir medidas de conectividade e assimetria hemisférica
+- **Avaliação Sistemática de Reamostragem**: Teste de 7 técnicas diferentes para lidar com o desequilíbrio de classes
+- **Validação Rigorosa**: Validação cruzada conservadora com abordagem k-fold estratificada
+- **Integração com MLflow**: Rastreamento abrangente de experimentos para reprodutibilidade
+- **Documentação de Limitações**: Quantificação dos desafios fundamentais na classificação de demência em múltiplas classes
+- **Abordagem de Classificação Binária**: Desenvolvimento de um modelo de triagem clinicamente orientado para identificar indivíduos doentes versus saudáveis
 
-## Results
+## Resultados
 
-### Multi-Class Classification (AD vs. FTD vs. Controls)
-- **Cross-Validation Accuracy**: 65.2% ± 8.4%
-- **Test Accuracy**: 67.7%
-- **Generalization**: Good (2.6% gap between CV and test)
-- **FTD Detection**: 12.5% recall (critical limitation)
-- **Conclusion**: Clinically unsuitable due to poor FTD discrimination, despite good generalization
+### Classificação Multiclasse (DA vs. DFT vs. Controles)
+- **Acurácia da Validação Cruzada**: 65,2% ± 8,4%
+- **Acurácia do Teste**: 67,7%
+- **Generalização**: Boa (diferença de 2,6% entre a validação cruzada e o teste)
+- **Detecção de DFT**: 12,5% de recall (limitação crítica)
+- **Conclusão**: Clinicamente inadequado devido à baixa discriminação de DFT, apesar da boa generalização
 
-| Metric | Alzheimer's | Frontotemporal | Control |
+| Métrica | Alzheimer | Frontotemporal | Controle |
 |--------|-------------|----------------|---------|
-| Precision | 0.80 | 0.33 | 0.62 |
-| Recall | 0.92 | 0.12 | 0.80 |
-| F1-Score | 0.86 | 0.18 | 0.70 |
+| Precisão | 0,80 | 0,33 | 0,62 |
+| Revocação | 0,92 | 0,12 | 0,80 |
+| Pontuação F1 | 0,86 | 0,18 | 0,70 |
 
 ![Multiclass Confusion Matrix](figures/confusion_matrix_multiclass.png)
 
-**Key Insight**: The multiclass model generalizes well but has fundamentally insufficient accuracy for clinical use. The confusion matrix reveals the model's critical failure in FTD detection, with most FTD cases misclassified as Alzheimer's or controls.
+**Principal Conclusão**: O modelo multiclasse generaliza bem, mas apresenta acurácia fundamentalmente insuficiente para uso clínico. A matriz de confusão revela a falha crítica do modelo na detecção da DFT (Demência Frontotemporal), com a maioria dos casos de DFT classificados erroneamente como Alzheimer ou controles.
 
-### Binary Classification (Disease vs. Healthy)
-- **Cross-Validation Accuracy**: 74.6% ± 9.0%
-- **Test Accuracy**: 77.8%
-- **Generalization**: Excellent (3.1% gap)
-- **Sensitivity**: 77.8% (disease detection)
-- **Specificity**: 77.8% (healthy identification)
+### Classificação Binária (Doença vs. Saudável)
+- **Acurácia da Validação Cruzada**: 74,6% ± 9,0%
+- **Acurácia do Teste**: 77,8%
+- **Generalização**: Excelente (diferença de 3,1%)
+- **Sensibilidade**: 77,8% (detecção da doença)
+- **Especificidade**: 77,8% (identificação de indivíduos saudáveis)
 
-| Metric | Disease | Healthy |
+| Métrica | Doença | Saudável |
 |--------|---------|---------|
-| Precision | 0.88 | 0.64 |
-| Recall | 0.78 | 0.78 |
-| F1-Score | 0.82 | 0.70 |
+| Precisão | 0,88 | 0,64 |
+| Revocação | 0,78 | 0,78 |
+| Pontuação F1 | 0,82 | 0,70 |
 
 ![Binary Confusion Matrix](figures/confusion_matrix_binary.png)
 
-The binary classifier shows balanced performance across both classes, making it suitable for preliminary screening applications.
+O classificador binário apresenta desempenho equilibrado em ambas as classes, tornando-o adequado para aplicações de triagem preliminar.
 
-## Performance Comparison
+## Comparação de Desempenho
 
-| Study | Classification | Method | CV Accuracy | Generalization |
+| Estudo | Classificação | Método | Precisão da Validação Cruzada | Generalização |
 |-------|---------------|--------|-------------|----------------|
-| Miltiadous et al. (2023) | AD vs. Controls | RBP + Random Forests | 77.0% | Not reported |
-| Miltiadous et al. (2023) | FTD vs. Controls | RBP + MLP | 73.1% | Not reported |
-| **This Study** | **AD vs. FTD vs. Controls** | **Enhanced Features + XGBoost** | **65.2%** | **Good (2.6% gap)** |
-| **This Study** | **Disease vs. Controls** | **Enhanced Features + XGBoost** | **74.6%** | **Excellent (3.1% gap)** |
+| Miltiadous et al. (2023) | DA vs. Controles | RBP + Florestas Aleatórias | 77,0% | Não relatado |
+| Miltiadous et al. (2023) | DFT vs. Controles | RBP + MLP | 73,1% | Não relatado |
+| **Este Estudo** | **DA vs. DFT vs. Controles** | **Recursos Aprimorados + XGBoost** | **65,2%** | **Bom (diferença de 2,6%)** |
+| **Este Estudo** | **Doença vs. Controles** | **Recursos Aprimorados + XGBoost** | **74,6%** | **Excelente (diferença de 3,1%)** |
 
-## Key Findings
+## Principais Descobertas
 
-- **Multi-class limitation**: Poor FTD detection (12.5% recall) demonstrates fundamental limitations of resting-state EEG for dementia type discrimination
-- **Binary screening potential**: 74.6% CV accuracy with excellent generalization shows promise for preliminary disease detection
-- **Resampling analysis**: Original (no resampling) performed best for multiclass; SMOTE optimal for binary classification
-- **Feature engineering impact**: Binary model benefited from 31 engineered features reduced to 25 selected features
-- **Good generalization**: Both models show strong generalization (< 3.2% gaps), indicating adequate regularization
+- **Limitação multiclasse**: A baixa detecção de DFT (recall de 12,5%) demonstra limitações fundamentais do EEG em repouso para a discriminação de tipos de demência.
+- **Potencial para triagem binária**: A acurácia de 74,6% na validação cruzada com excelente generalização mostra potencial para a detecção preliminar da doença.
+- **Análise de reamostragem**: O modelo original (sem reamostragem) apresentou o melhor desempenho para multiclasse; o SMOTE foi o mais adequado para classificação binária.
+- **Impacto da engenharia de recursos**: O modelo binário se beneficiou da redução de 31 recursos projetados para 25 recursos selecionados.
+- **Boa generalização**: Ambos os modelos apresentam forte generalização (< 3,2% de discrepâncias), indicando regularização adequada.
 
-## Clinical Implications
+## Implicações Clínicas
 
-The binary classification approach shows moderate potential for preliminary screening with robust generalization. The multi-class model's failure to distinguish dementia types (particularly FTD) represents an important negative result: the limitation is not model architecture or overfitting, but rather the fundamental challenge of using resting-state EEG alone for dementia subtype classification.
+A abordagem de classificação binária demonstra potencial moderado para triagem preliminar com generalização robusta. A falha do modelo multiclasse em distinguir os tipos de demência (particularmente DFT) representa um resultado negativo importante: a limitação não reside na arquitetura do modelo ou no sobreajuste, mas sim no desafio fundamental de utilizar apenas o EEG em repouso para a classificação de subtipos de demência.
 
-## MLflow Experiment Tracking
+## Rastreamento de Experimentos com MLflow
 
-This project uses MLflow for comprehensive experiment tracking:
-
+Este projeto utiliza o MLflow para um rastreamento completo de experimentos:
 ```bash
 # Launch MLflow UI
 mlflow ui
 ```
 
-## Files Structure
+## Estrutura de Arquivos
 
 ```
 ├── analyze.ipynb                 # Main analysis notebook with MLflow integration
@@ -115,7 +114,7 @@ mlflow ui
 └── README.md
 ```
 
-## Requirements
+## Requisitos 
 
 - Python 3.8+
 - MNE-Python
@@ -125,8 +124,7 @@ mlflow ui
 - mlflow
 - pandas, numpy, matplotlib, seaborn
 
-## Citation
-
+## Citações
 Built upon the dataset from:
 Miltiadous, A., et al. (2023). A Dataset of Scalp EEG Recordings of Alzheimer's Disease, Frontotemporal Dementia and Healthy Subjects from Routine EEG. *Data*, 8(6), 95.
 
