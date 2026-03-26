@@ -12,7 +12,7 @@ Este projeto amplia o trabalho fundamental de Miltiadous et al. (2023) ao desenv
 - **Formato**: BIDS-compliant preprocessed data
 
 ### Baixando o Dataset
-
+#### Forma 01: Autor
 ```bash
 # Install OpenNeuro CLI
 npm install -g @openneuro/cli
@@ -23,6 +23,21 @@ openneuro login
 # Download dataset
 openneuro download --snapshot 1.0.7 ds004504 ds004504-download/
 ```
+
+#### Forma 02: (Marcella)
+Para utilizar este projeto, é necessário baixar o dataset utilizado nos experimentos:
+
+1. Acesse o link: https://www.kaggle.com/datasets/thngdngvn/openneuro-ds004504
+2. Faça login no Kaggle e clique em **"Download"** para baixar o arquivo `.zip`.
+3. Extraia o conteúdo em um diretório local, mantendo a estrutura original das pastas.
+
+---
+
+### 📌 Observação
+
+* **Não suba o dataset para o GitHub**, pois ele é grande e pode causar problemas no repositório. Mantenha os dados apenas localmente (ex: pasta `data/`).
+
+---
 
 ## Principais Contribuições
 
