@@ -1,0 +1,22 @@
+artifact_path: file:c:/Users/marce/projetoPython/EEG/demencia/eeg-dementia-ml/mlruns-new/858064323093464703/models/m-e42db34220c94b09826bd31bb2aad84b/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.14.3
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: ubj
+    xgb_version: 3.2.0
+mlflow_version: 3.10.1
+model_id: m-e42db34220c94b09826bd31bb2aad84b
+model_size_bytes: 152132
+model_uuid: m-e42db34220c94b09826bd31bb2aad84b
+prompts: null
+run_id: bcdd7014d07045ed817b66aab3f55831
+utc_time_created: '2026-04-02 12:59:03.490093'

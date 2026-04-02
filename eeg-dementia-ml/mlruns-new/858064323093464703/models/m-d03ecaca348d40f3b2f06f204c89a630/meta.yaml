@@ -1,0 +1,10 @@
+artifact_location: file:c:/Users/marce/projetoPython/EEG/demencia/eeg-dementia-ml/mlruns-new/858064323093464703/models/m-d03ecaca348d40f3b2f06f204c89a630/artifacts
+creation_timestamp: 1775135274493
+experiment_id: '858064323093464703'
+last_updated_timestamp: 1775135281128
+model_id: m-d03ecaca348d40f3b2f06f204c89a630
+model_type: null
+name: model
+source_run_id: e12f30dd87854b0186b9319f33f962bb
+status: 2
+status_message: null

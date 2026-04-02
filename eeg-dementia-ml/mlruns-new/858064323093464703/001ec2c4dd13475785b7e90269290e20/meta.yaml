@@ -1,0 +1,14 @@
+artifact_uri: file:c:/Users/marce/projetoPython/EEG/demencia/eeg-dementia-ml/mlruns-new/858064323093464703/001ec2c4dd13475785b7e90269290e20/artifacts
+end_time: 1775134706788
+entry_point_name: ''
+experiment_id: '858064323093464703'
+lifecycle_stage: active
+run_id: 001ec2c4dd13475785b7e90269290e20
+run_name: resampling_SMOTE_20260402_0954
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1775134704467
+status: 3
+tags: []
+user_id: marce
