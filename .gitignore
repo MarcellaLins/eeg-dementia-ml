@@ -1,3 +1,4 @@
 data
 mlruns-new
 mlflow.db
+mlflow_artifacts
